@@ -417,6 +417,17 @@ class TickerBase():
         except Exception:
             pass
 
+            # get expense ratio
+        expenseRatio = (data
+                        .get('fundProfile', {})
+                        .get('feesExpensesInvestment', {})
+                        .get('annualReportExpenseRatio', None))
+
+        try:
+            self._info['annualReportExpenseRatio'] = expenseRatio
+        except Exception:
+            pass
+
        # For ETFs, provide this valuable data: the top holdings of the ETF
         try:
             if 'topHoldings' in data:
